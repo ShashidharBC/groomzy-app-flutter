@@ -1,7 +1,8 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'colors.dart' as color;
-import 'appointment_details_page.dart'; // Import the new page
+import 'appointment_details_page.dart';
+import 'create_appointment_page.dart'; // Import the new Create Appointment page
 // Import the service pages
 import 'men_available_services_page.dart';
 import 'women_available_services_page.dart';
@@ -25,10 +26,9 @@ class _HomePageState extends State<HomePage> {
       setState(() {
         info = json.decode(value);
       });
-      print("Loaded ${info.length} items"); // Debug print
+      print("Loaded ${info.length} items");
     } catch (e) {
-      print("Error loading JSON: $e"); // Debug print
-      // Fallback data if JSON fails to load
+      print("Error loading JSON: $e");
       setState(() {
         info = [
           {"title": "Men ?", "img": "assets/haircut.jpg"},
@@ -50,12 +50,21 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
+  // Navigation function to Create Appointment page
+  void _navigateToCreateAppointment() {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => const CreateAppointmentPage(),
+      ),
+    );
+  }
+
   // Navigation function for service items
   void _navigateToServicePage(String title) {
     Widget destinationPage;
     debugPrint("Navigating to service page with title: $title");
 
-    // Check the title and navigate to respective page
     if (title.toLowerCase().contains('women')) {
       destinationPage = const WomenAvailableServicesPage();
     } else if (title.toLowerCase().contains('men')) {
@@ -65,7 +74,6 @@ class _HomePageState extends State<HomePage> {
     } else if (title.toLowerCase().contains('pet')) {
       destinationPage = const PetAvailableServicesPage();
     } else {
-      // Default fallback - you can customize this as needed
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text('Service page not available for: $title')),
       );
@@ -95,8 +103,7 @@ class _HomePageState extends State<HomePage> {
             Row(
               children: [
                 Text(
-                  "GroomZy", // Updated title
-                  // "TrimMr", // Updated title
+                  "GroomZy",
                   style: TextStyle(
                     fontSize: 30,
                     fontWeight: FontWeight.w700,
@@ -110,10 +117,13 @@ class _HomePageState extends State<HomePage> {
                   color: color.AppColor.homePageIcons,
                 ),
                 SizedBox(width: 10),
-                Icon(
-                  Icons.calendar_today_outlined,
-                  size: 20,
-                  color: color.AppColor.homePageIcons,
+                GestureDetector(
+                  onTap: _navigateToCreateAppointment,
+                  child: Icon(
+                    Icons.calendar_month,
+                    size: 35,
+                    color: color.AppColor.gradientSecond,
+                  ),
                 ),
                 SizedBox(width: 15),
                 Icon(
@@ -127,7 +137,7 @@ class _HomePageState extends State<HomePage> {
             Row(
               children: [
                 Text(
-                  "Your appointment", // Updated subtitle
+                  "Your appointment",
                   style: TextStyle(
                     fontSize: 20,
                     fontWeight: FontWeight.w700,
@@ -135,7 +145,6 @@ class _HomePageState extends State<HomePage> {
                   ),
                 ),
                 Expanded(child: Container()),
-                // Wrapped "Details" text and arrow in GestureDetector
                 GestureDetector(
                   onTap: _navigateToAppointmentDetails,
                   child: Row(
@@ -191,7 +200,7 @@ class _HomePageState extends State<HomePage> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      "Next appointment", // Updated text
+                      "Next appointment",
                       style: TextStyle(
                         fontSize: 16,
                         color: color.AppColor.homePageContainerTextSmall,
@@ -199,7 +208,7 @@ class _HomePageState extends State<HomePage> {
                     ),
                     SizedBox(height: 5),
                     Text(
-                      "Premium Haircut", // Updated service name
+                      "Premium Haircut",
                       style: TextStyle(
                         fontSize: 25,
                         color: color.AppColor.homePageContainerTextSmall,
@@ -207,7 +216,7 @@ class _HomePageState extends State<HomePage> {
                     ),
                     SizedBox(height: 5),
                     Text(
-                      "& Beard Styling", // Updated service description
+                      "& Beard Styling",
                       style: TextStyle(
                         fontSize: 25,
                         color: color.AppColor.homePageContainerTextSmall,
@@ -220,13 +229,13 @@ class _HomePageState extends State<HomePage> {
                         Row(
                           children: [
                             Icon(
-                              Icons.access_time, // Changed to time icon
+                              Icons.access_time,
                               size: 20,
                               color: color.AppColor.homePageContainerTextSmall,
                             ),
                             SizedBox(width: 10),
                             Text(
-                              "45 min", // Updated duration
+                              "45 min",
                               style: TextStyle(
                                 fontSize: 14,
                                 color:
@@ -248,7 +257,7 @@ class _HomePageState extends State<HomePage> {
                             ],
                           ),
                           child: Icon(
-                            Icons.content_cut, // Changed to scissors icon
+                            Icons.content_cut,
                             color: Colors.white,
                             size: 60,
                           ),
@@ -271,7 +280,7 @@ class _HomePageState extends State<HomePage> {
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(20),
                       image: DecorationImage(
-                        image: AssetImage("assets/barber_chair.jpg"), // Updated image
+                        image: AssetImage("assets/barber_chair.jpg"),
                         fit: BoxFit.fill,
                       ),
                       boxShadow: [
@@ -295,7 +304,7 @@ class _HomePageState extends State<HomePage> {
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(20),
                       image: DecorationImage(
-                        image: AssetImage("assets/barber_tools.png"), // Updated image
+                        image: AssetImage("assets/barber_tools.png"),
                       ),
                     ),
                   ),
@@ -307,7 +316,7 @@ class _HomePageState extends State<HomePage> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          "Looking sharp today", // Updated motivational text
+                          "Looking sharp today",
                           style: TextStyle(
                             fontSize: 18,
                             fontWeight: FontWeight.bold,
@@ -316,7 +325,7 @@ class _HomePageState extends State<HomePage> {
                         ),
                         SizedBox(height: 14),
                         Text(
-                          "Book your next cut!", // Updated text
+                          "Book your next cut!",
                           style: TextStyle(
                             fontSize: 14,
                             fontWeight: FontWeight.bold,
@@ -325,7 +334,7 @@ class _HomePageState extends State<HomePage> {
                         ),
                         SizedBox(height: 4),
                         Text(
-                          "Stay fresh & stylish", // Updated text
+                          "Stay fresh & stylish",
                           style: TextStyle(
                             fontSize: 14,
                             fontWeight: FontWeight.bold,
@@ -341,7 +350,7 @@ class _HomePageState extends State<HomePage> {
             Row(
               children: [
                 Text(
-                  "Our Services", // Updated section title
+                  "Our Services",
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     fontSize: 25,
@@ -358,15 +367,13 @@ class _HomePageState extends State<HomePage> {
                   removeTop: true,
                   context: context,
                   child: ListView.builder(
-                    // FIXED: Use ceiling division to handle odd numbers of items
                     itemCount: (info.length / 2).ceil(),
                     itemBuilder: (_, i) {
-                      int a = 2 * i; // first item index
-                      int b = 2 * i + 1; // second item index
+                      int a = 2 * i;
+                      int b = 2 * i + 1;
 
                       return Row(
                         children: [
-                          // First item (always exists for this row) - Wrapped with GestureDetector
                           GestureDetector(
                             onTap: () => _navigateToServicePage(info[a]['title']),
                             child: Container(
@@ -427,7 +434,6 @@ class _HomePageState extends State<HomePage> {
                               ),
                             ),
                           ),
-                          // Second item (only if it exists) - Wrapped with GestureDetector
                           b < info.length
                               ? GestureDetector(
                             onTap: () => _navigateToServicePage(info[b]['title']),
@@ -491,7 +497,7 @@ class _HomePageState extends State<HomePage> {
                               ),
                             ),
                           )
-                              : Container(), // Empty container for spacing when odd number
+                              : Container(),
                         ],
                       );
                     },

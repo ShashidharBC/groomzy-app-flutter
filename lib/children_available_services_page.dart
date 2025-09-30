@@ -9,107 +9,122 @@ class ChildrenAvailableServicesPage extends StatefulWidget {
 }
 
 class _ChildrenAvailableServicesPageState extends State<ChildrenAvailableServicesPage> {
-  // Sample services data
-  final List<Map<String, dynamic>> menServices = [
+  // Children's grooming services
+  final List<Map<String, dynamic>> childrenServices = [
     {
-      'name': 'Classic Haircut',
-      'description': 'Traditional scissor cut with styling',
+      'name': 'Kids Basic Haircut',
+      'description': 'Simple and quick haircut for children',
+      'duration': '20 min',
+      'price': '₹15',
+      'icon': Icons.child_care,
+      'category': 'Hair'
+    },
+    {
+      'name': 'Toddler First Haircut',
+      'description': 'Gentle first haircut experience with certificate',
+      'duration': '25 min',
+      'price': '₹20',
+      'icon': Icons.baby_changing_station,
+      'category': 'Hair'
+    },
+    {
+      'name': 'Kids Styling Cut',
+      'description': 'Trendy haircut with styling for kids',
       'duration': '30 min',
-      'price': '\₹25',
+      'price': '₹25',
+      'icon': Icons.face_retouching_natural,
+      'category': 'Hair'
+    },
+    {
+      'name': 'Boy\'s Crew Cut',
+      'description': 'Classic short cut, easy to maintain',
+      'duration': '20 min',
+      'price': '₹18',
       'icon': Icons.content_cut,
       'category': 'Hair'
     },
     {
-      'name': 'Premium Haircut',
-      'description': 'Precision cut with wash and styling',
-      'duration': '45 min',
-      'price': '\₹35',
+      'name': 'Girl\'s Trim',
+      'description': 'Hair trim with optional fringe cut',
+      'duration': '25 min',
+      'price': '₹20',
       'icon': Icons.cut,
       'category': 'Hair'
     },
     {
-      'name': 'Beard Trim',
-      'description': 'Professional beard shaping and styling',
-      'duration': '20 min',
-      'price': '\₹15',
-      'icon': Icons.face_retouching_natural,
-      'category': 'Beard'
-    },
-    {
-      'name': 'Full Beard Service',
-      'description': 'Trim, shape, oil treatment and styling',
-      'duration': '35 min',
-      'price': '\₹25',
-      'icon': Icons.face,
-      'category': 'Beard'
-    },
-    {
-      'name': 'Hot Towel Shave',
-      'description': 'Traditional straight razor shave',
-      'duration': '40 min',
-      'price': '\₹30',
-      'icon': Icons.spa,
-      'category': 'Shave'
-    },
-    {
-      'name': 'Mustache Trim',
-      'description': 'Precision mustache grooming',
+      'name': 'Kids Hair Wash',
+      'description': 'Gentle shampoo and conditioning',
       'duration': '15 min',
-      'price': '\₹10',
-      'icon': Icons.face_retouching_natural,
-      'category': 'Beard'
-    },
-    {
-      'name': 'Hair Wash & Style',
-      'description': 'Deep cleanse with professional styling',
-      'duration': '25 min',
-      'price': '\₹20',
+      'price': '₹12',
       'icon': Icons.water_drop,
+      'category': 'Care'
+    },
+    {
+      'name': 'Buzz Cut',
+      'description': 'Quick and easy clipper cut',
+      'duration': '15 min',
+      'price': '₹15',
+      'icon': Icons.straighten,
       'category': 'Hair'
     },
     {
-      'name': 'Fade Cut',
-      'description': 'Modern fade with clean lines',
+      'name': 'Kids Hair Design',
+      'description': 'Creative hair designs and patterns',
+      'duration': '35 min',
+      'price': '₹30',
+      'icon': Icons.draw,
+      'category': 'Styling'
+    },
+    {
+      'name': 'Hair Coloring (Temporary)',
+      'description': 'Safe, washable hair color for kids',
+      'duration': '30 min',
+      'price': '₹35',
+      'icon': Icons.color_lens,
+      'category': 'Styling'
+    },
+    {
+      'name': 'Spa Package for Kids',
+      'description': 'Hair wash, cut, and gentle scalp massage',
       'duration': '40 min',
-      'price': '\₹30',
-      'icon': Icons.gradient,
-      'category': 'Hair'
-    },
-    {
-      'name': 'Hair Treatment',
-      'description': 'Nourishing scalp and hair treatment',
-      'duration': '50 min',
-      'price': '\₹40',
-      'icon': Icons.healing,
-      'category': 'Treatment'
-    },
-    {
-      'name': 'Complete Package',
-      'description': 'Haircut, beard trim, and hot towel shave',
-      'duration': '75 min',
-      'price': '\₹55',
-      'icon': Icons.star,
+      'price': '₹40',
+      'icon': Icons.spa,
       'category': 'Package'
+    },
+    {
+      'name': 'Birthday Special',
+      'description': 'Haircut with fun styling and temporary highlights',
+      'duration': '45 min',
+      'price': '₹45',
+      'icon': Icons.cake,
+      'category': 'Package'
+    },
+    {
+      'name': 'Quick Trim',
+      'description': 'Fast touch-up for bangs or sides',
+      'duration': '10 min',
+      'price': '₹10',
+      'icon': Icons.speed,
+      'category': 'Hair'
     }
   ];
 
   String selectedCategory = 'All';
-  final List<String> categories = ['All', 'Hair', 'Beard', 'Shave', 'Treatment', 'Package'];
+  final List<String> categories = ['All', 'Hair', 'Care', 'Styling', 'Package'];
 
   List<Map<String, dynamic>> get filteredServices {
     if (selectedCategory == 'All') {
-      return menServices;
+      return childrenServices;
     }
-    return menServices.where((service) => service['category'] == selectedCategory).toList();
+    return childrenServices.where((service) => service['category'] == selectedCategory).toList();
   }
 
   Color getCategoryColor(String category) {
     switch (category) {
       case 'Hair': return Colors.blue.shade400;
-      case 'Beard': return Colors.orange.shade400;
-      case 'Shave': return Colors.green.shade400;
-      case 'Treatment': return Colors.purple.shade400;
-      case 'Package': return Colors.red.shade400;
+      case 'Care': return Colors.green.shade400;
+      case 'Styling': return Colors.purple.shade400;
+      case 'Package': return Colors.orange.shade400;
       default: return color.AppColor.gradientFirst;
     }
   }
@@ -216,7 +231,7 @@ class _ChildrenAvailableServicesPageState extends State<ChildrenAvailableService
                     Navigator.pop(context);
                     // TODO: Navigate to booking page
                     ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(content: Text('Booking ${service['name']}...')),
+                      SnackBar(content: Text('Booking ${service['name']}...'), backgroundColor: Colors.green,),
                     );
                   },
                   style: ElevatedButton.styleFrom(
@@ -263,14 +278,28 @@ class _ChildrenAvailableServicesPageState extends State<ChildrenAvailableService
                   ),
                   const SizedBox(width: 15),
                   Expanded(
-                    child: Text(
-                      "Children Services",
-                      style: TextStyle(
-                        fontSize: 24,
-                        fontWeight: FontWeight.w700,
-                        color: color.AppColor.homePageTitle,
-                      ),
-                    ),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          "Children Services",
+                          style: TextStyle(
+                            fontSize: 24,
+                            fontWeight: FontWeight.w700,
+                            color: color.AppColor.homePageTitle,
+                          ),
+                        ),
+                        Text(
+                          "${childrenServices.length} services available",
+                          style: TextStyle(
+                            fontSize: 14,
+                            color: Colors.grey.shade600,
+                          ),
+                        ),
+
+                      ],
+                    )
+
                   ),
                 ],
               ),
@@ -300,8 +329,8 @@ class _ChildrenAvailableServicesPageState extends State<ChildrenAvailableService
                               : Colors.white,
                           borderRadius: BorderRadius.circular(25),
                           border: Border.all(
-                            color: color.AppColor.gradientSecond, // Blue border
-                            width: 0.5, // Border thickness
+                            color: color.AppColor.gradientSecond,
+                            width: 0.5,
                           ),
                           boxShadow: [
                             BoxShadow(

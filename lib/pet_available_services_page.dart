@@ -9,105 +9,106 @@ class PetAvailableServicesPage extends StatefulWidget {
 }
 
 class _PetAvailableServicesPageState extends State<PetAvailableServicesPage> {
-  // Sample services data
-  final List<Map<String, dynamic>> menServices = [
+  // Sample pet grooming services data
+  final List<Map<String, dynamic>> petServices = [
     {
-      'name': 'Classic Haircut',
-      'description': 'Traditional scissor cut with styling',
-      'duration': '30 min',
-      'price': '\₹25',
-      'icon': Icons.content_cut,
-      'category': 'Hair'
-    },
-    {
-      'name': 'Premium Haircut',
-      'description': 'Precision cut with wash and styling',
+      'name': 'Basic Bath & Brush',
+      'description': 'Shampoo bath, blow dry, and thorough brushing',
       'duration': '45 min',
-      'price': '\₹35',
-      'icon': Icons.cut,
-      'category': 'Hair'
+      'price': '₹800',
+      'icon': Icons.bathtub,
+      'category': 'Bath'
     },
     {
-      'name': 'Beard Trim',
-      'description': 'Professional beard shaping and styling',
+      'name': 'Full Grooming',
+      'description': 'Bath, haircut, nail trim, and ear cleaning',
+      'duration': '90 min',
+      'price': '₹1500',
+      'icon': Icons.content_cut,
+      'category': 'Grooming'
+    },
+    {
+      'name': 'Nail Trimming',
+      'description': 'Professional nail clipping and filing',
       'duration': '20 min',
-      'price': '\₹15',
-      'icon': Icons.face_retouching_natural,
-      'category': 'Beard'
-    },
-    {
-      'name': 'Full Beard Service',
-      'description': 'Trim, shape, oil treatment and styling',
-      'duration': '35 min',
-      'price': '\₹25',
-      'icon': Icons.face,
-      'category': 'Beard'
-    },
-    {
-      'name': 'Hot Towel Shave',
-      'description': 'Traditional straight razor shave',
-      'duration': '40 min',
-      'price': '\₹30',
-      'icon': Icons.spa,
-      'category': 'Shave'
-    },
-    {
-      'name': 'Mustache Trim',
-      'description': 'Precision mustache grooming',
-      'duration': '15 min',
-      'price': '\₹10',
-      'icon': Icons.face_retouching_natural,
-      'category': 'Beard'
-    },
-    {
-      'name': 'Hair Wash & Style',
-      'description': 'Deep cleanse with professional styling',
-      'duration': '25 min',
-      'price': '\₹20',
-      'icon': Icons.water_drop,
-      'category': 'Hair'
-    },
-    {
-      'name': 'Fade Cut',
-      'description': 'Modern fade with clean lines',
-      'duration': '40 min',
-      'price': '\₹30',
-      'icon': Icons.gradient,
-      'category': 'Hair'
-    },
-    {
-      'name': 'Hair Treatment',
-      'description': 'Nourishing scalp and hair treatment',
-      'duration': '50 min',
-      'price': '\₹40',
+      'price': '₹300',
       'icon': Icons.healing,
+      'category': 'Nails'
+    },
+    {
+      'name': 'Teeth Cleaning',
+      'description': 'Dental hygiene and teeth brushing service',
+      'duration': '30 min',
+      'price': '₹500',
+      'icon': Icons.clean_hands,
+      'category': 'Dental'
+    },
+    {
+      'name': 'Flea & Tick Treatment',
+      'description': 'Special medicated bath for flea and tick removal',
+      'duration': '60 min',
+      'price': '₹1200',
+      'icon': Icons.bug_report,
       'category': 'Treatment'
     },
     {
-      'name': 'Complete Package',
-      'description': 'Haircut, beard trim, and hot towel shave',
-      'duration': '75 min',
-      'price': '\₹55',
+      'name': 'Ear Cleaning',
+      'description': 'Gentle ear cleaning and inspection',
+      'duration': '15 min',
+      'price': '₹250',
+      'icon': Icons.hearing,
+      'category': 'Grooming'
+    },
+    {
+      'name': 'De-shedding Treatment',
+      'description': 'Special treatment to reduce excessive shedding',
+      'duration': '50 min',
+      'price': '₹900',
+      'icon': Icons.spa,
+      'category': 'Treatment'
+    },
+    {
+      'name': 'Haircut & Styling',
+      'description': 'Breed-specific haircut and styling',
+      'duration': '60 min',
+      'price': '₹1000',
+      'icon': Icons.cut,
+      'category': 'Grooming'
+    },
+    {
+      'name': 'Paw & Pad Care',
+      'description': 'Paw cleaning, moisturizing, and pad treatment',
+      'duration': '25 min',
+      'price': '₹400',
+      'icon': Icons.pets,
+      'category': 'Grooming'
+    },
+    {
+      'name': 'Deluxe Spa Package',
+      'description': 'Complete grooming with massage and aromatherapy',
+      'duration': '120 min',
+      'price': '₹2500',
       'icon': Icons.star,
       'category': 'Package'
     }
   ];
 
   String selectedCategory = 'All';
-  final List<String> categories = ['All', 'Hair', 'Beard', 'Shave', 'Treatment', 'Package'];
+  final List<String> categories = ['All', 'Bath', 'Grooming', 'Nails', 'Dental', 'Treatment', 'Package'];
 
   List<Map<String, dynamic>> get filteredServices {
     if (selectedCategory == 'All') {
-      return menServices;
+      return petServices;
     }
-    return menServices.where((service) => service['category'] == selectedCategory).toList();
+    return petServices.where((service) => service['category'] == selectedCategory).toList();
   }
 
   Color getCategoryColor(String category) {
     switch (category) {
-      case 'Hair': return Colors.blue.shade400;
-      case 'Beard': return Colors.orange.shade400;
-      case 'Shave': return Colors.green.shade400;
+      case 'Bath': return Colors.blue.shade400;
+      case 'Grooming': return Colors.orange.shade400;
+      case 'Nails': return Colors.green.shade400;
+      case 'Dental': return Colors.teal.shade400;
       case 'Treatment': return Colors.purple.shade400;
       case 'Package': return Colors.red.shade400;
       default: return color.AppColor.gradientFirst;
@@ -216,7 +217,7 @@ class _PetAvailableServicesPageState extends State<PetAvailableServicesPage> {
                     Navigator.pop(context);
                     // TODO: Navigate to booking page
                     ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(content: Text('Booking ${service['name']}...')),
+                      SnackBar(content: Text('Booking ${service['name']}...'), backgroundColor: Colors.green,),
                     );
                   },
                   style: ElevatedButton.styleFrom(
@@ -263,14 +264,28 @@ class _PetAvailableServicesPageState extends State<PetAvailableServicesPage> {
                   ),
                   const SizedBox(width: 15),
                   Expanded(
-                    child: Text(
-                      "Pets Services",
-                      style: TextStyle(
-                        fontSize: 24,
-                        fontWeight: FontWeight.w700,
-                        color: color.AppColor.homePageTitle,
-                      ),
-                    ),
+                    child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            "Pet Grooming Services",
+                            style: TextStyle(
+                              fontSize: 24,
+                              fontWeight: FontWeight.w700,
+                              color: color.AppColor.homePageTitle,
+                            ),
+                          ),
+                          Text(
+                            "${petServices.length} services available",
+                            style: TextStyle(
+                              fontSize: 14,
+                              color: Colors.grey.shade600,
+                            ),
+                          ),
+
+                        ]
+                    )
+
                   ),
                 ],
               ),

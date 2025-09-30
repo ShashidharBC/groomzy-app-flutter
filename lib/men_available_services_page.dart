@@ -216,7 +216,7 @@ class _MenAvailableServicesPageState extends State<MenAvailableServicesPage> {
                     Navigator.pop(context);
                     // TODO: Navigate to booking page
                     ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(content: Text('Booking ${service['name']}...')),
+                      SnackBar(content: Text('Booking ${service['name']}...'), backgroundColor: Colors.green,),
                     );
                   },
                   style: ElevatedButton.styleFrom(
@@ -263,14 +263,28 @@ class _MenAvailableServicesPageState extends State<MenAvailableServicesPage> {
                   ),
                   const SizedBox(width: 15),
                   Expanded(
-                    child: Text(
-                      "Men's Services",
-                      style: TextStyle(
-                        fontSize: 24,
-                        fontWeight: FontWeight.w700,
-                        color: color.AppColor.homePageTitle,
-                      ),
-                    ),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          "Men's Services",
+                          style: TextStyle(
+                            fontSize: 24,
+                            fontWeight: FontWeight.w700,
+                            color: color.AppColor.homePageTitle,
+                          ),
+                        ),
+                        Text(
+                          "${menServices.length} services available",
+                          style: TextStyle(
+                            fontSize: 14,
+                            color: Colors.grey.shade600,
+                          ),
+                        ),
+
+                      ],
+                    )
+
                   ),
                 ],
               ),
